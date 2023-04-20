@@ -17,6 +17,7 @@ def inverse_matrix(K):
 
 def multiply_matrix(matrix1, matrix2):
     cipherMatrix = [[0] for i in range(3)]
+    print(cipherMatrix)
     for i in range(3):
         for j in range(1):
             cipherMatrix[i][j] = 0
