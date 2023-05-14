@@ -23,8 +23,7 @@ def sign(message, prime, secret, gen):
     s1 = pow(gen, k, prime)
     inv_k = pow(k, -1, prime - 1)
     s2 = inv_k * (message - (secret * s1)) % (prime - 1)
-
-    print("Chosen K: {}".format(k))
+    print("Chosen K: {}".format(k), end=" ")
     print("S1: {}".format(s1), end=" ")
     print("S2: {}".format(s2), end=" ")
     return s1, s2
@@ -58,10 +57,16 @@ def main():
     xA = random.randint(1, q)
     public_key = pow(a, xA, q)
 
+    # q = 23
+    # a = 13
+    # xA = 7
+    # public_key = 9
+
     print("Prime Number: {}".format(q), end=" ")
     print("a: {}".format(a), end=" ")
     print("xA: {}".format(xA), end=" ")
     print("Public Key: {}".format(public_key), end=" ")
+    print()
 
     sign_arr = []
     index = 0
@@ -71,12 +76,13 @@ def main():
         print("Signatures for {}: [{},{}]".format(chr(message + 65), s1, s2))
         sign_arr.append([s1, s2])
 
+
     for message in mess_arr:
         v1, v2 = verify(message, a, q, public_key, sign_arr, index)
-        print("Verification for {}: [{},{}]".format(chr(message + 65), v1, v2))
+        print("Verification for {}: [{},{}]".format(chr(message + 65), v1, v2), end=" ")
         index += 1
         if v1 == v2:
-            print("Successfully Verified {} !".format(chr(message + 65)))
+            print("Successfully Verified {}!".format(chr(message + 65)))
 
 
 if __name__ == "__main__":
